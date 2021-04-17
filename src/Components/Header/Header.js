@@ -2,7 +2,7 @@ import './Header.css';
 
 function Header() {
     return (
-    <nav className="product-filter">
+    <nav className="product-filter"> 
       <h1>Jackets</h1>
 
       <div className="sort">
