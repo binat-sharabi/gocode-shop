@@ -1,28 +1,20 @@
-import Product from '../Product/Product'
-import React from 'react'
+import './Products.css'
+import Product from "../Product/Product";
+
 
 function Products(){
-    const list= React.createElement(
-        "div",
-        {class:"products"},
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>,
-        <Product></Product>
-    );
-   
-    return list;
+return (
+    <section className="products">
+       <Product></Product>
+       <Product></Product>
+       <Product></Product>
+       <Product></Product>
+       <Product></Product>
+       <Product></Product>
+    </section>
+);
 }
 
-export default ProductList;
+
+
+export default Products;
