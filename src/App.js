@@ -1,9 +1,12 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Components/Header/Header';
 import Products from './Components/Products/Products';
+//import Toggle from './Components/Toggle';
 
-const productList=[ 
+function App() {
+
+  const productList = [
     {
       "id": 1,
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -164,14 +167,29 @@ const productList=[
       "category": "women clothing",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
     }
-];
+  ];
+
+  const [category, setCategory] = useState("");
+
+  const groupBy = (xs, key) => xs.reduce((rv, x) => {
+    (rv[x[key]] = true || []);
+    return rv;
+  }, {});
 
 
-function App() {
+  const categories = Object.keys(groupBy(productList, 'category'));
+  console.log(categories)
+
+  function filterByCategory(category) {
+    debugger
+    setCategory(category);
+  }
+
   return (
     <div className="App">
-      <Header />
-      <Products list={productList}/>
+      <Header filters={categories} filterByCategory={filterByCategory} key={categories} />
+      <Products list={productList.filter(item => item.category === category)} />
+      {/* <Toggle /> */}
     </div>
 
   );

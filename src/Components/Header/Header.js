@@ -1,22 +1,23 @@
+import { useState } from 'react';
 import './Header.css';
 
-function Header() {
-    return (
-    <nav className="product-filter"> 
-      <h1>Jackets</h1>
+function Header(filters,filterByCategory) {  
+  const [category, setCategory] = useState("");
+
+  function editTitle(e) {    
+    setCategory(e.target.value);    
+    filters.filterByCategory(e.target.value);
+  }
+
+  return (
+    <nav className="product-filter">
+      <h1>{category}</h1>
 
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
-          <select>
-            <option value="/">All Jackets</option>
-            <option value="/">2016</option>
-            <option value="/">jacket</option>
-            <option value="/">Jackets</option>
-            <option value="/">layers</option>
-            <option value="/">Obermeyer</option>
-            <option value="/">Roxy</option>
-            <option value="/">womens</option>
+          <select onChange={editTitle}>
+            {filters.filters.map(filter => <option value={filter}>{filter}</option>)}           
           </select>
         </div>
 
@@ -35,7 +36,7 @@ function Header() {
         </div>
       </div>
     </nav>
-    );
+  );
 }
 
 export default Header;
