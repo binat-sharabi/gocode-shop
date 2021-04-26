@@ -17,6 +17,7 @@ function Header(filters,filterByCategory) {
         <div className="collection-sort">
           <label>Filter by:</label>
           <select onChange={editTitle}>
+            <option value="AllProducts">All Products</option>
             {filters.filters.map(filter => <option value={filter}>{filter}</option>)}           
           </select>
         </div>
