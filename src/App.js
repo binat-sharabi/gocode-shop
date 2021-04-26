@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import Header from './Components/Header/Header';
 import Products from './Components/Products/Products';
+import Loader from './Components/Loader/Loader';
 //import Toggle from './Components/Toggle';
 
 
@@ -40,12 +41,14 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Header filters={categories} filterByCategory={filterByCategory} />
-      <Products list={filterList} />
-      {/* <Toggle /> */}
-    </div>
-
+    <>
+      {productList.length === 0 ?
+        <Loader></Loader> :
+        <div className="App">
+          <Header filters={categories} filterByCategory={filterByCategory} key={categories} />
+          <Products list={filterList} />
+        </div>} 
+    </>
   );
 }
 
