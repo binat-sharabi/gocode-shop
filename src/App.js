@@ -23,13 +23,10 @@ function App() {
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
-      .then(data => SetProductList(data))
+      .then(data =>(SetProductList(data) , setFilterList(data)))
   }, []);
 
   //const [category, setCategory] = useState("AllProducts");
-
-
-
 
 
   function filterByCategory(category) {

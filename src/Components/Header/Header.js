@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './Header.css';
 
-function Header(filters,filterByCategory) {  
-  const [category, setCategory] = useState("");
+function Header({ filters, filterByCategory }) {
+  const [category, setCategory] = useState("AllProducts");
 
-  function editTitle(e) {    
-    setCategory(e.target.value);    
-    filters.filterByCategory(e.target.value);
+  function editTitle(e) {
+    setCategory(e.target.value);
+    filterByCategory(e.target.value);
   }
 
   return (
@@ -18,7 +18,7 @@ function Header(filters,filterByCategory) {
           <label>Filter by:</label>
           <select onChange={editTitle}>
             <option value="AllProducts">All Products</option>
-            {filters.filters.map(filter => <option value={filter}>{filter}</option>)}           
+            {filters.map(filter => <option value={filter}>{filter}</option>)}
           </select>
         </div>
 
