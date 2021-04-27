@@ -1,6 +1,15 @@
+import { useContext } from 'react';
+import CartContext from '../../Contexts/CartContext';
 import './Product.css'
 
-function Product(props) {   
+
+function Product(props) { 
+const {cart,setCart}=useContext(CartContext);
+
+function AddToCart(){
+    debugger
+   setCart(item=>[...item,props]);
+}
     return (
             <div className="product-card">
                 <div className="product-image">
@@ -12,6 +21,7 @@ function Product(props) {
                     <h5>{props.title}</h5>
                     <h6>{props.price}</h6>
                 </div>
+                <button onClick={()=>AddToCart()}>Add to Cart</button>
             </div>
     );
 }

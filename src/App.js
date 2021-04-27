@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Header from './Components/Header/Header';
 import Products from './Components/Products/Products';
 import Loader from './Components/Loader/Loader';
+import Cart from './Components/Cart/Cart';
+import CartContext from './Contexts/CartContext';
 //import Toggle from './Components/Toggle';
 
 
@@ -11,6 +13,7 @@ function App() {
 
   const [filterList, setFilterList] = useState(productList);
 
+  const [cart, setCart] = useState([]);
 
   const groupBy = (xs, key) => xs.reduce((rv, x) => {
     (rv[x[key]] = true || []);
@@ -23,29 +26,29 @@ function App() {
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
-      .then(data =>(SetProductList(data) , setFilterList(data)))
+      .then(data => (SetProductList(data), setFilterList(data)))
   }, []);
-
-  //const [category, setCategory] = useState("AllProducts");
 
 
   function filterByCategory(category) {
-    debugger
-    //setCategory(category);
-
     setFilterList(productList.filter(item => (item.category === category) || category === "AllProducts"));
   }
 
 
   return (
-    <>
+    <CartContext.Provider value={{ cart, setCart }}>
       {productList.length === 0 ?
         <Loader></Loader> :
-        <div className="App">
-          <Header filters={categories} filterByCategory={filterByCategory} key={categories} />
+        <div className="App" style={{position:"relative"}}>
+          <div className="cartDiv">
+          <Cart></Cart>
+          </div>
+          <div style={{position: "absolute",right: "auto",width: "80%",height: "100%"}}>
+          <Header filters={categories} filterByCategory={filterByCategory} />
           <Products list={filterList} />
-        </div>} 
-    </>
+          </div>
+        </div>}
+    </CartContext.Provider>
   );
 }
 

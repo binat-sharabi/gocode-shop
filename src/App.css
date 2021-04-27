@@ -190,6 +190,11 @@
     }
   
     
-    
+    .cartDiv{
+    position: absolute;
+    left: 82%;
+    width: 30%;
+    height: 100%;
+    }
     
    
