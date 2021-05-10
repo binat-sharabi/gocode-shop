@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './Header.css';
+import RangeSlider from '../Slider/RangeSlider';
 
-function Header({ filters, filterByCategory }) {
+function Header({ filters, filterByCategory, sliderValues }) {
   const [category, setCategory] = useState("AllProducts");
 
   function editTitle(e) {
@@ -13,6 +14,7 @@ function Header({ filters, filterByCategory }) {
     <nav className="product-filter">
       <h1>{category}</h1>
 
+      <RangeSlider sliderValues={sliderValues} />
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
