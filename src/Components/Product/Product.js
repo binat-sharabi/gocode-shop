@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CartContext from "../../Contexts/CartContext";
 import "./Product.css";
+import { Link } from "react-router-dom";
 
 function Product({ id, image, title, price, quantity }) {
   const { cart, setCart } = useContext(CartContext);
@@ -24,7 +25,9 @@ function Product({ id, image, title, price, quantity }) {
         <img src={image} />
       </div>
       <div className="product-info">
-        <h5>{title}</h5>
+        <Link to={`/products/${id}`}>
+          <h5>{title}</h5>
+        </Link>
         <h6>{price}</h6>
       </div>
       <button onClick={() => AddToCart()}>Add to Cart</button>
